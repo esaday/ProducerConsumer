@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+
+message SingleData {
+   string someText = 1;
+   int32 someValue = 2;
+   int64 timeSeconds = 3;
+}
+
+message DataSet {
+  repeated SingleData singleData = 1;
+}

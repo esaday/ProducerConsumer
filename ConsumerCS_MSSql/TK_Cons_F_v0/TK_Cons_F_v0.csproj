@@ -1,0 +1,211 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{0D9B60AD-25C6-4739-BBD2-BC78BB891582}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TK_Cons_F_v0</RootNamespace>
+    <AssemblyName>TK_Cons_F_v0</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Apache.NMS">
+      <HintPath>..\..\BusinessObject\ExampleQue\bin\Debug\Apache.NMS.dll</HintPath>
+    </Reference>
+    <Reference Include="Apache.NMS.ActiveMQ">
+      <HintPath>..\..\BusinessObject\ExampleQue\bin\Debug\Apache.NMS.ActiveMQ.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Google.Protobuf">
+      <HintPath>..\..\BusinessObject\ProtoAmqRecieve\bin\Debug\Google.Protobuf.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BUS\AmqHandler.cs" />
+    <Compile Include="BUS\Classifier.cs" />
+    <Compile Include="BUS\CRUD.cs" />
+    <Compile Include="BUS\UIUpdater.cs" />
+    <Compile Include="DAO\AMQDatas.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AMQDatas.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAO\AMQDatas.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AMQDatas.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAO\AMQDatas.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AMQDatas.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="DAO\sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>AMQDatas.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAO\sp_helpdiagrams_Result.cs">
+      <DependentUpon>AMQDatas.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAO\sysdiagram.cs">
+      <DependentUpon>AMQDatas.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAO\tableClassify.cs">
+      <DependentUpon>AMQDatas.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAO\tableErrorLog.cs">
+      <DependentUpon>AMQDatas.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAO\tableMyData.cs">
+      <DependentUpon>AMQDatas.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UI\AddSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\AddSettings.Designer.cs">
+      <DependentUpon>AddSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\DashBoard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\DashBoard.Designer.cs">
+      <DependentUpon>DashBoard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\DataFlow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\DataFlow.Designer.cs">
+      <DependentUpon>DataFlow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UI\MDIParentMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\MDIParentMain.Designer.cs">
+      <DependentUpon>MDIParentMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Settings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Settings.Designer.cs">
+      <DependentUpon>Settings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VO\Mydataset.cs" />
+    <EmbeddedResource Include="UI\AddSettings.resx">
+      <DependentUpon>AddSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\DashBoard.resx">
+      <DependentUpon>DashBoard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\DataFlow.resx">
+      <DependentUpon>DataFlow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="UI\MDIParentMain.resx">
+      <DependentUpon>MDIParentMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Settings.resx">
+      <DependentUpon>Settings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EntityDeploy Include="DAO\AMQDatas.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>AMQDatas.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="DAO\AMQDatas.edmx.diagram">
+      <DependentUpon>AMQDatas.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="DAO\AMQDatas.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>AMQDatas.edmx</DependentUpon>
+      <LastGenOutput>AMQDatas.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="DAO\AMQDatas.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>AMQDatas.edmx</DependentUpon>
+      <LastGenOutput>AMQDatas.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

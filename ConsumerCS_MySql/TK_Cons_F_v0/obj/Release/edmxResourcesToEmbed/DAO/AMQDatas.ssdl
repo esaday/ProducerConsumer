@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AmqDatasModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="tableClassify">
+    <Key>
+      <PropertyRef Name="ClsID" />
+    </Key>
+    <Property Name="ClsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="altLim" Type="int" />
+    <Property Name="ustLim" Type="int" />
+    <Property Name="birLim" Type="int" />
+    <Property Name="someText" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="tableErrorLog">
+    <Key>
+      <PropertyRef Name="ErrID" />
+    </Key>
+    <Property Name="ErrID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ErrDateTime" Type="datetime" />
+    <Property Name="ErrNote" Type="varchar" MaxLength="255" />
+    <Property Name="DataID" Type="int" />
+    <Property Name="ClsID" Type="int" />
+  </EntityType>
+  <EntityType Name="tableMyData">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="val" Type="float" />
+    <Property Name="sometext" Type="varchar" MaxLength="200" />
+    <Property Name="recieve_date" Type="datetime" />
+  </EntityType>
+  <Association Name="FK__tableErro__DataI__25869641">
+    <End Role="tableMyData" Type="Self.tableMyData" Multiplicity="0..1" />
+    <End Role="tableErrorLog" Type="Self.tableErrorLog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tableMyData">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tableErrorLog">
+        <PropertyRef Name="DataID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tableErrorLog_tableClassify">
+    <End Role="tableClassify" Type="Self.tableClassify" Multiplicity="0..1" />
+    <End Role="tableErrorLog" Type="Self.tableErrorLog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tableClassify">
+        <PropertyRef Name="ClsID" />
+      </Principal>
+      <Dependent Role="tableErrorLog">
+        <PropertyRef Name="ClsID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="AddClassificationSettings" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="altLim" Type="int" Mode="In" />
+    <Parameter Name="ustLim" Type="int" Mode="In" />
+    <Parameter Name="birLim" Type="int" Mode="In" />
+    <Parameter Name="errMsg" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="AddSingleData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="someVal" Type="int" Mode="In" />
+    <Parameter Name="someText" Type="varchar" Mode="In" />
+    <Parameter Name="rec_date" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <EntityContainer Name="AmqDatasModelStoreContainer">
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tableClassify" EntityType="Self.tableClassify" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tableErrorLog" EntityType="Self.tableErrorLog" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tableMyData" EntityType="Self.tableMyData" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__tableErro__DataI__25869641" Association="Self.FK__tableErro__DataI__25869641">
+      <End Role="tableMyData" EntitySet="tableMyData" />
+      <End Role="tableErrorLog" EntitySet="tableErrorLog" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tableErrorLog_tableClassify" Association="Self.FK_tableErrorLog_tableClassify">
+      <End Role="tableClassify" EntitySet="tableClassify" />
+      <End Role="tableErrorLog" EntitySet="tableErrorLog" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
